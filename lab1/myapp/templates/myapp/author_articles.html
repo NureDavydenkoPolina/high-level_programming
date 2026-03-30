@@ -1,0 +1,17 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h1>Articles by {{ author.username }}</h1>
+
+<ul>
+    {% for article in articles %}
+        <li>
+            <b>{{ article.title }}</b><br>
+            {{ article.text }}<br>
+            {{ article.published_date }}
+        </li>
+    {% empty %}
+        <li>No articles found</li>
+    {% endfor %}
+</ul>
+{% endblock %}

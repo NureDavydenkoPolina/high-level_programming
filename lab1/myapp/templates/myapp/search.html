@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h1>Search Articles</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Search..." value="{{ query|default:'' }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    {% for article in articles %}
+        <li>
+            <b>{{ article.title }}</b><br>
+            {{ article.text }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h1>{{ article.title }}</h1>
+
+<p>{{ article.text }}</p>
+
+<p><b>Author:</b> {{ article.author.username }}</p>
+<p><b>Date:</b> {{ article.published_date }}</p>
+
+<a href="/articles/">← Back</a>
+{% endblock %}
