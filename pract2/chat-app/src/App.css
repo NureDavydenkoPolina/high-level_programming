@@ -1,0 +1,101 @@
+button {
+  background: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.login input {
+  padding: 12px;
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login button {
+  width: 200px;
+  font-size: 16px;
+}
+
+.chat {
+  display: flex;
+  height: 100vh;
+}
+
+nav {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+nav input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+[role="log"] {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 60%;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.input-row button {
+  white-space: nowrap;
+}
+
+button:focus,
+input:focus {
+  outline: 3px solid #3498db;
+}
