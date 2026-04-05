@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Visualizer</title>
+</head>
+<body>
+
+<h1>Users</h1>
+
+<table border="1" id="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  fetch('users.json')
+    .then(response => response.json())
+    .then(data => {
+      const tableBody = document.querySelector('#table tbody');
+
+      data.forEach(user => {
+        const row = document.createElement('tr');
+
+        const name = document.createElement('td');
+        name.textContent = user.name;
+
+        const age = document.createElement('td');
+        age.textContent = user.age;
+
+        const city = document.createElement('td');
+        city.textContent = user.city;
+
+        row.appendChild(name);
+        row.appendChild(age);
+        row.appendChild(city);
+
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(() => {
+      document.body.innerHTML = "<h2>Error loading data</h2>";
+    });
+</script>
+
+</body>
+</html>

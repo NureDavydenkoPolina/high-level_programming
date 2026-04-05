@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quotes</title>
+</head>
+<body>
+
+  <h1>Quote of the Day</h1>
+  <p id="quote">Quote</p>
+
+  <script>
+    fetch('quotes.json')
+      .then(response => response.json())
+      .then(data => {
+        const randomIndex = Math.floor(Math.random() * data.length);
+
+        const randomQuote = data[randomIndex].text;
+
+        document.getElementById('quote').textContent = randomQuote;
+      })
+      .catch(() => {
+        document.getElementById('quote').textContent = "Error loading quote";
+      });
+  </script>
+
+</body>
+</html>
