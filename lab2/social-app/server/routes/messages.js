@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { readData, writeData } = require("../dataService");
+const { readData, writeData, getNextId } = require("../dataService");
 
 router.post("/", (req, res) => {
   const data = readData();
 
   const newMessage = {
-    id: Date.now(),
+    id: getNextId(data.messages),
     from: req.body.from,
     to: req.body.to,
     text: req.body.text

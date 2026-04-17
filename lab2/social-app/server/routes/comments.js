@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { readData, writeData } = require("../dataService");
+const { readData, writeData, getNextId } = require("../dataService");
 
 router.get("/", (req, res) => {
   const data = readData();
@@ -12,7 +12,7 @@ router.post("/", (req, res) => {
   const data = readData();
 
   const newComment = {
-    id: Date.now(),
+    id: getNextId(data.comments),
     postId: req.body.postId,
     text: req.body.text,
     userId: req.body.userId
