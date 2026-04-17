@@ -1,22 +1,25 @@
 const express = require("express");
 const router = express.Router();
 
-const data = require("../data/data");
+const { readData, writeData } = require("../dataService");
 
 router.get("/", (req, res) => {
+  const data = readData();
   res.json(data.posts);
 });
 
 router.post("/", (req, res) => {
-  const { userId, title } = req.body;
+  const data = readData();
 
   const newPost = {
-    id: data.postId++,
-    userId,
-    title
+    id: Date.now(),
+    userId: req.body.userId,
+    title: req.body.title
   };
 
   data.posts.push(newPost);
+  writeData(data);
+
   res.json(newPost);
 });
 

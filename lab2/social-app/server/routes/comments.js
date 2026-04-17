@@ -1,23 +1,26 @@
 const express = require("express");
 const router = express.Router();
 
-const data = require("../data/data");
+const { readData, writeData } = require("../dataService");
 
 router.get("/", (req, res) => {
+  const data = readData();
   res.json(data.comments);
 });
 
 router.post("/", (req, res) => {
-  const { postId, text, userId } = req.body;
+  const data = readData();
 
   const newComment = {
-    id: data.commentId++,
-    postId,
-    text,
-    userId
+    id: Date.now(),
+    postId: req.body.postId,
+    text: req.body.text,
+    userId: req.body.userId
   };
 
   data.comments.push(newComment);
+  writeData(data);
+
   res.json(newComment);
 });
 

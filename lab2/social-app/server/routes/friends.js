@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { friendships } = require("../data/data");
+const { readData, writeData } = require("../dataService");
 
 router.get("/:userId", (req, res) => {
+  const data = readData();
   const userId = Number(req.params.userId);
 
-  const userFriends = friendships
+  const userFriends = data.friendships
     .filter(f => f.user1 === userId || f.user2 === userId)
     .map(f => (f.user1 === userId ? f.user2 : f.user1));
 
@@ -14,40 +15,38 @@ router.get("/:userId", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  const data = readData();
   const { user1, user2 } = req.body;
 
-  const exists = friendships.find(
+  const exists = data.friendships.find(
     f =>
       (f.user1 === user1 && f.user2 === user2) ||
       (f.user1 === user2 && f.user2 === user1)
   );
 
-  if (exists) {
-    return res.json({ message: "Already friends" });
+  if (!exists) {
+    data.friendships.push({ user1, user2 });
+    writeData(data);
   }
 
-  const newFriendship = { user1, user2 };
-  friendships.push(newFriendship);
-
-  res.json(newFriendship);
+  res.json({ message: "OK" });
 });
 
 router.delete("/", (req, res) => {
+  const data = readData();
   const { user1, user2 } = req.body;
 
-  const index = friendships.findIndex(
+  data.friendships = data.friendships.filter(
     f =>
-      (f.user1 === user1 && f.user2 === user2) ||
-      (f.user1 === user2 && f.user2 === user1)
+      !(
+        (f.user1 === user1 && f.user2 === user2) ||
+        (f.user1 === user2 && f.user2 === user1)
+      )
   );
 
-  if (index === -1) {
-    return res.json({ message: "Not friends" });
-  }
+  writeData(data);
 
-  friendships.splice(index, 1);
-
-  res.json({ message: "Friend removed" });
+  res.json({ message: "Removed" });
 });
 
 module.exports = router;

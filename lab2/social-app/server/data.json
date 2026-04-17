@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Polina"
+    },
+    {
+      "id": 2,
+      "name": "Alex"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "My first post"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Hello world"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "text": "Nice post!",
+      "userId": 1
+    }
+  ],
+  "friendships": [],
+  "messages": [
+    {
+      "id": 1776432698773,
+      "from": 1,
+      "to": 2,
+      "text": "Hello"
+    }
+  ]
+}

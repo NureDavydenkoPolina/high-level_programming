@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { users } = require("../data/data");
+const { readData } = require("../dataService");
 
 router.get("/", (req, res) => {
-  res.json(users);
+  const data = readData();
+  res.json(data.users);
 });
 
 module.exports = router;
